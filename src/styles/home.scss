@@ -2,23 +2,29 @@
 @import "breakpoints.scss";
 
 .home-page {
-  background-image: url("../images/home-bg.png");
+  background-image: url("../images/home-bg-moblie.png");
   background-repeat: no-repeat;
-  background-position: right center;
+  background-position: top top;
   background-attachment: fixed;
   background-size: cover;
-
+  @include lg {
+    background-image: url("../images/home-bg.png");
+    background-position: right center;
+  }
   .container {
+    height: calc(100% - 88px);
     max-width: 1440px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: auto;
-    padding-top: 56px;
-    // height: 100%;
+
+    padding-top: 24px;
+    height: calc(100vh - 196px);
 
     @include lg {
       padding-top: 251px;
+      height: auto;
     }
     @include md {
       padding-top: 156px;
@@ -32,6 +38,7 @@
       justify-content: space-around;
       align-items: center;
       width: 100%;
+      height: 100%;
 
       gap: 96px;
       @include lg {

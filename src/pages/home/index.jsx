@@ -1,10 +1,12 @@
 import { motion } from "framer-motion"
-import React from "react"
+import React, { useEffect } from "react"
 import "../../styles/home.scss"
+import gsap, { Power0, Power1, Power3, Power4, Back, Expo } from "gsap"
+import { CSSRulePlugin } from "gsap/CSSRulePlugin"
 const HomePage = () => {
   const textVariants = {
     hidden: {
-      y: "120%",
+      y: "-110%",
       opacity: 0.3,
       skewY: 7,
     },
@@ -13,8 +15,8 @@ const HomePage = () => {
       skewY: 0,
       opacity: 1,
       transition: {
-        duration: 1,
-        delay: 3,
+        duration: 0.8,
+        delay: 0.8,
         ease: "easeOut",
       },
     },
@@ -31,6 +33,71 @@ const HomePage = () => {
     },
   }
 
+  const buttonVariants = {
+    hidden: {
+      "&::before": {
+        x: 0,
+        y: 0,
+      },
+    },
+    visible: {
+      "&::before": {
+        x: "100%",
+        y: "100%",
+      },
+      transition: {
+        duration: 0.5,
+      },
+    },
+  }
+
+  useEffect(() => {
+    const tl = gsap.timeline()
+
+    tl.to(".landing-page-btn span", {
+      duration: 4,
+      delay: 1,
+      x: "-100%",
+      y: "-100%",
+      ease: Power1.easeInOut,
+    })
+      // .to(".landing-page-btn", {
+      //   boxShadow: "0 0 3px #fff",
+      //   filter: `drop-shadow(0 0 0px #fff) drop-shadow(0 0 2px #fff)
+      //   drop-shadow(0 0 5px #fff) drop-shadow(0 0 10px #fff)`,
+      //   textShadow: "2px 2px 5px #0c0c0c",
+      //   duration: 0.8,
+      //   delay: -1.6,
+      //   ease: Power0.easeOut,
+      // })
+      // .to(".landing-page-btn", {
+      //   boxShadow: "0 0 0px #fff",
+      //   filter: `drop-shadow(0 0 0px #fff) drop-shadow(0 0 0px #fff)
+      //   drop-shadow(0 0 2px #fff)  drop-shadow(0 0 5px #fff)`,
+      //   textShadow: "0px 0px 0px #0c0c0c",
+      //   duration: 0.8,
+      //   delay: -0.4,
+      //   ease: Power0.easeNone,
+      // })
+      .to(".landing-page-btn", {
+        boxShadow: "0 0 0px #fff",
+        textShadow: "0px 0px 0px #0c0c0c",
+        filter: `drop-shadow(0 0 0px #fff) drop-shadow(0 0 0px #fff)
+        drop-shadow(0 0 0px #fff)  drop-shadow(0 0 0px #fff)`,
+        duration: 0.8,
+        delay: -0.4,
+        ease: Power1.easeInOut,
+      })
+      .set(".landing-page-btn span", {
+        display: "none",
+      })
+      .set(".landing-page-btn", {
+        overflow: "visible",
+        filter: "none",
+        boxShadow: "none",
+      })
+  }, [])
+
   return (
     <div className="home-page page ">
       <div className="container">
@@ -41,7 +108,7 @@ const HomePage = () => {
             hidden="hidden"
             animate="visible"
           >
-            <motion.h5 className="line">
+            <h5 className="line">
               <motion.span
                 variants={textVariants}
                 initial="hidden"
@@ -49,8 +116,8 @@ const HomePage = () => {
               >
                 SO, YOU WANT TO TRAVEL TO
               </motion.span>
-            </motion.h5>
-            <motion.h1 className="line">
+            </h5>
+            <h1 className="line">
               <motion.span
                 variants={textVariants}
                 initial="hidden"
@@ -58,8 +125,8 @@ const HomePage = () => {
               >
                 SPACE
               </motion.span>
-            </motion.h1>
-            <motion.p className="body line">
+            </h1>
+            <p className="body line">
               <motion.span
                 variants={textVariants}
                 initial="hidden"
@@ -70,10 +137,18 @@ const HomePage = () => {
                 it. Well sit back, and relax because we’ll give you a truly out
                 of this world experience!
               </motion.span>
-            </motion.p>
+            </p>
           </motion.div>
 
-          <button className="landing-page-btn">EXPLORE</button>
+          <motion.button
+            className="landing-page-btn"
+            variants={buttonVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            EXPLORE
+            <span></span>
+          </motion.button>
         </div>
       </div>
     </div>

@@ -123,8 +123,14 @@ h5 {
   font-size: 20px;
   cursor: pointer;
   position: relative;
+  overflow: hidden;
 
   z-index: 2;
+
+  text-shadow: 5px 5px 10px #0c0c0c;
+  box-shadow: 0 0 5px $white;
+  filter: drop-shadow(0 0 2px $white) drop-shadow(0 0 5px $white)
+    drop-shadow(0 0 10px $white) drop-shadow(0 0 20px $white);
 
   @include md {
     $size: 242px;
@@ -137,6 +143,20 @@ h5 {
     $size: 274px;
     height: $size;
     width: $size;
+  }
+
+  span {
+    position: absolute;
+    background-color: $black;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    transform-style: preserve-3d;
+    box-shadow: 0 0 5px $black;
+    filter: drop-shadow(0 0 2px $black) drop-shadow(0 0 5px $black)
+      drop-shadow(0 0 10px $black);
   }
 
   &::after {
@@ -152,9 +172,9 @@ h5 {
     border-radius: 50%;
     left: -$deviant;
     top: -$deviant;
-    transform: scale(0);
+    transform: scale(0.5);
     transition: all 0.4s ease-in-out;
-    backdrop-filter: blur(7px);
+    backdrop-filter: blur(14px);
 
     @include md {
       $deviant: 72px;
@@ -165,6 +185,9 @@ h5 {
   }
 
   &:hover {
+    // box-shadow: 0 0 5px $white;
+    // filter: drop-shadow(0 0 2px $white) drop-shadow(0 0 5px $white)
+    //   drop-shadow(0 0 10px $white) drop-shadow(0 0 20px $white);
     &::after {
       transform: scale(1);
     }
@@ -198,11 +221,32 @@ h5 {
       min-height: 100vh;
       height: 100%;
       width: 100%;
-      padding-top: 136px;
-      padding-bottom: 90px;
 
+      padding-bottom: 90px;
+      padding-top: 88px;
       padding-right: 24px;
       padding-left: 24px;
+
+      @include md {
+        padding-top: 96px;
+        padding-right: 48px;
+        padding-left: 48px;
+      }
+      @include lg {
+        padding-top: 136px;
+      }
     }
   }
+}
+
+.loading-page {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  z-index: 10000;
+  background-color: $black;
+  top: 0;
+  left: 0;
+  transition: opacity 1s ease-in;
+  opacity: 0;
 }
