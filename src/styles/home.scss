@@ -1,0 +1,71 @@
+@import "variables.scss";
+@import "breakpoints.scss";
+
+.home-page {
+  background-image: url("../images/home-bg.png");
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-attachment: fixed;
+  background-size: cover;
+
+  .container {
+    max-width: 1440px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    padding-top: 56px;
+    // height: 100%;
+
+    @include lg {
+      padding-top: 251px;
+    }
+    @include md {
+      padding-top: 156px;
+    }
+    @include xl {
+      padding-top: 262px;
+    }
+    .home-page__content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      width: 100%;
+
+      gap: 96px;
+      @include lg {
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: space-around;
+      }
+      @include xl {
+        justify-content: space-between;
+      }
+    }
+  }
+
+  &__left {
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    text-align: center;
+
+    @include lg {
+      text-align: left;
+    }
+    .line {
+      overflow: hidden;
+      position: relative;
+      span {
+        // position: absolute;
+        display: inline-block;
+      }
+    }
+  }
+
+  .body {
+    color: $blue;
+  }
+}
