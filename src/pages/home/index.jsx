@@ -54,7 +54,7 @@ const HomePage = () => {
   useEffect(() => {
     const tl = gsap.timeline()
 
-    tl.to(".landing-page-btn span", {
+    tl.to(".landing-page-btn .front-planet-wrapper .front-planet", {
       duration: 4,
       delay: 1,
       x: "-100%",
@@ -88,11 +88,11 @@ const HomePage = () => {
         delay: -0.4,
         ease: Power1.easeInOut,
       })
-      .set(".landing-page-btn span", {
+      .set(".landing-page-btn .front-planet-wrapper", {
         display: "none",
       })
       .set(".landing-page-btn", {
-        overflow: "visible",
+        // overflow: "visible",
         filter: "none",
         boxShadow: "none",
       })
@@ -147,7 +147,9 @@ const HomePage = () => {
             animate="visible"
           >
             EXPLORE
-            <span></span>
+            <div className="front-planet-wrapper">
+              <span className="front-planet"></span>
+            </div>
           </motion.button>
         </div>
       </div>

@@ -30,9 +30,10 @@ const Layout = ({ children }) => {
           {children}
         </main>)
       }
+
       <motion.div className="loading-page"
         style={{
-          display: 'flex',
+          display: isLoading ? 'flex' : 'none',
           justifyContent: 'center',
           alignItems: 'center'
         }}
@@ -63,7 +64,7 @@ const Layout = ({ children }) => {
             rotate: ['0deg', '360deg'],
 
             transition: {
-              duration: 2,
+
               repeat: Infinity,
               yoyo: Infinity
             }
