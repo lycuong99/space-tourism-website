@@ -1,0 +1,144 @@
+@import "./breakpoints.scss";
+@import "./variables.scss";
+
+.destination-page {
+  background: url("../images/destination-bg.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  .container {
+    @include sm {
+      padding-top: 40px;
+    }
+    @include lg {
+      padding-top: 76px;
+    }
+  }
+  &__title {
+    text-align: center;
+    text-transform: uppercase;
+    span:nth-child(1) {
+      font-weight: bold;
+      color: rgba($color: #fff, $alpha: 0.25);
+      margin-right: 16px;
+    }
+
+    @include md {
+      text-align: left;
+    }
+  }
+  .planet {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    padding-top: 32px;
+    @include sm {
+      padding-top: 60px;
+      gap: 64px;
+    }
+    @include lg {
+      padding-top: 64px;
+      flex-direction: row;
+      gap: 120px;
+    }
+    @include xl {
+      gap: 160px;
+    }
+
+    &__img {
+      width: 170px;
+      height: 170px;
+
+      @include sm {
+        width: 300px;
+        height: 300px;
+      }
+      @include lg {
+        max-width: 445px;
+        max-height: 445px;
+      }
+      @include xl {
+        width: 445px;
+        height: 445px;
+      }
+    }
+    &__name {
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      @include sm {
+        margin-bottom: 8px;
+      }
+      @include lg {
+        margin-bottom: 16px;
+      }
+    }
+    &__description {
+      color: $blue;
+      min-height: calc(32px * 3);
+      
+    }
+    &__detail-infos {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+
+      @include sm {
+        flex-direction: row;
+        justify-content: space-evenly;
+      }
+      @include lg {
+        justify-content: start;
+        gap: 64px;
+      }
+    }
+    &__info {
+      text-align: center;
+      @include md {
+        max-width: 573px;
+      }
+      @include lg {
+        max-width: 40vw;
+        text-align: left;
+      }
+      @include xl {
+        max-width: 40vw;
+      }
+      .tabs {
+        margin-bottom: 20px;
+        @include sm {
+          margin-bottom: 32px;
+        }
+        @include md {
+          margin-bottom: 40px;
+        }
+      }
+      .divider {
+        margin: 32px 0px;
+        @include sm {
+          margin-top: 50px;
+          margin-bottom: 28px;
+        }
+        @include lg {
+          margin-top: 54px;
+        }
+      }
+    }
+
+    &__detail-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      @include lg {
+        align-items: flex-start;
+      }
+      .subheading2,
+      .subheading1 {
+        text-transform: uppercase;
+      }
+    }
+  }
+}

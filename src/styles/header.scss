@@ -73,7 +73,6 @@
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
   height: 100%;
-  margin-left: 34px;
 
   &__list {
     height: 100%;
@@ -118,6 +117,7 @@
   &--desktop {
     padding-left: 48px;
     padding-right: 48px;
+    margin-left: 34px;
 
     @include lg {
       padding-left: 123px;

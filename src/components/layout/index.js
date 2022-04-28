@@ -12,6 +12,7 @@ import '../../styles/header.scss';
 import "@fontsource/barlow-condensed";
 import "@fontsource/bellefair";
 import "@fontsource/barlow";
+
 import { motion } from "framer-motion";
 
 const Layout = ({ children }) => {
