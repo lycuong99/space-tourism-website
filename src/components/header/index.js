@@ -94,7 +94,7 @@ const Header = ({ siteTitle }) => {
               </Link>
             </li>
             <li className="nav__item">
-              <Link to="/" className="nav-link">
+              <Link to="/crew" className="nav-link">
                 <span className="nav-link__index">02</span>
                 <span className="nav-link__title">CREW</span>
               </Link>

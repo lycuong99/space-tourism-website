@@ -15,19 +15,7 @@
       padding-top: 76px;
     }
   }
-  &__title {
-    text-align: center;
-    text-transform: uppercase;
-    span:nth-child(1) {
-      font-weight: bold;
-      color: rgba($color: #fff, $alpha: 0.25);
-      margin-right: 16px;
-    }
 
-    @include md {
-      text-align: left;
-    }
-  }
   .planet {
     display: flex;
     flex-direction: column;

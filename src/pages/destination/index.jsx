@@ -47,7 +47,7 @@ const DestinationPage = () => {
     <Layout>
       <div className="page destination-page">
         <div className="container">
-          <h5 className="destination-page__title">
+          <h5 className="page__title">
             <span>01</span>
             <span>Pick your destination</span>
           </h5>
