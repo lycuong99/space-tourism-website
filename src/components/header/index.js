@@ -100,7 +100,7 @@ const Header = ({ siteTitle }) => {
               </Link>
             </li>
             <li className="nav__item">
-              <Link to="/" className="nav-link">
+              <Link to="/technology" className="nav-link">
                 <span className="nav-link__index">03</span>
                 <span className="nav-link__title">TECHNOLOGY</span>
               </Link>

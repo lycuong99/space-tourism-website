@@ -17,7 +17,7 @@ import { motion } from "framer-motion";
 
 const Layout = ({ children }) => {
 
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     console.log("Load lan dau");
     window.pageExitTime = 10000;
