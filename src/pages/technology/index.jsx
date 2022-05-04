@@ -70,6 +70,7 @@ const TechnologyPage = () => {
               <div className="technology__slides-indicators">
                 {techs.map((tech, index) => (
                   <span
+                    key={index}
                     onClick={() => {
                       setTechSelected(tech)
                     }}
