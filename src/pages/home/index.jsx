@@ -6,7 +6,7 @@ import { CSSRulePlugin } from "gsap/CSSRulePlugin"
 const HomePage = () => {
   const textVariants = {
     hidden: {
-      y: "-110%",
+      y: "-150%",
       opacity: 0.3,
       skewY: 7,
     },
@@ -16,7 +16,7 @@ const HomePage = () => {
       opacity: 1,
       transition: {
         duration: 0.8,
-        delay: 0.8,
+        delay: 1.5,
         ease: "easeOut",
       },
     },
@@ -99,7 +99,21 @@ const HomePage = () => {
   }, [])
 
   return (
-    <div className="home-page page ">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{
+        opacity: 0,
+        // x: "-100vw",
+        transition: {
+          duration: 1,
+          transition: {
+            ease: "easeInOut",
+          },
+        },
+      }}
+      className="home-page page "
+    >
       <div className="container">
         <div className="home-page__content">
           <motion.div
@@ -153,7 +167,7 @@ const HomePage = () => {
           </motion.button>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 

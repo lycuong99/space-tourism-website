@@ -8,6 +8,7 @@ import crew3 from "../../images/crew3.png"
 import crew4 from "../../images/crew4.png"
 import { useEffect } from "react"
 import { useCallback } from "react"
+import { motion } from "framer-motion"
 
 const crews = [
   {
@@ -71,7 +72,12 @@ const CrewPage = () => {
   return (
     <>
       <Layout>
-        <div className="page crew-page">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="page crew-page"
+        >
           <div className="container">
             <h5 className="page__title">
               <span>02</span>
@@ -92,13 +98,13 @@ const CrewPage = () => {
                   {crews.map((crew, i) => (
                     <span
                       id={crew.name}
-                      key={crew.name}
+                      key={i}
                       onClick={() => {
                         setSelectedCrew(crew)
                         setSelectedIndex(i)
                       }}
                       className={`${
-                        crew.name == selectedCrew.name ? "active" : ""
+                        crew.name === selectedCrew.name ? "active" : ""
                       }`}
                     ></span>
                   ))}
@@ -110,7 +116,7 @@ const CrewPage = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </Layout>
     </>
   )

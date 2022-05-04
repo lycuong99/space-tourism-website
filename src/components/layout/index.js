@@ -13,26 +13,29 @@ import "@fontsource/barlow-condensed";
 import "@fontsource/bellefair";
 import "@fontsource/barlow";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Layout = ({ children }) => {
 
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     console.log("Load lan dau");
-    window.pageExitTime = 10000;
+
+    // window.pageExitTime = 10000;
   }, []);
 
   return (
     <div className="layout">
       <Header siteTitle={`Title`} />
+
       {
-        !isLoading && (<main className="main">
+        !isLoading && (<motion.main initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="main">
           {children}
-        </main>)
+        </motion.main>)
       }
 
       <motion.div className="loading-page"
+      
         style={{
           display: isLoading ? 'flex' : 'none',
           justifyContent: 'center',
@@ -40,6 +43,7 @@ const Layout = ({ children }) => {
         }}
         initial={{
           opacity: 1,
+         
           transition: {
             duration: 3,
           }
@@ -50,9 +54,10 @@ const Layout = ({ children }) => {
         animate={{
           opacity: 0,
           transition: {
-            duration: 3
+            duration: 1
           }
         }}
+        exit={{ opacity: 0 }}
       >
         <motion.div style={{
           border: '16px solid #f3f3f3',
@@ -73,6 +78,7 @@ const Layout = ({ children }) => {
 
         </motion.div>
       </motion.div>
+
     </div>
 
   )

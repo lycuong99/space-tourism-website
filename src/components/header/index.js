@@ -53,6 +53,7 @@ const Header = ({ siteTitle }) => {
   }
   const [openSidebar, setOpenSidebar] = useState(false);
   const [sidebarAnimation, toggleSidebarAnimation] = useCycle('hidden', 'visible');
+  const pathName = window.location.pathname;
 
   const handleToggleSidebar = () => {
     setOpenSidebar(!openSidebar);
@@ -65,7 +66,9 @@ const Header = ({ siteTitle }) => {
         setOpenSidebar(!openSidebar);
         toggleSidebarAnimation(0);
       }
-    })
+    });
+
+    console.log(window.location.pathname);
   },
     []);
 
@@ -75,31 +78,43 @@ const Header = ({ siteTitle }) => {
   return (
     <>
       <header className="header">
-        <div className="logo">
+        <motion.div className="logo">
           <Link to="/"> <img src={logo} alt="logo" /></Link>
-        </div>
-        <div className="line" />
-        <nav className="nav nav--desktop">
+        </motion.div>
+        <motion.div className="line" initial={{ scaleX: 0 }} animate={{
+          scaleX: 1, transformOrigin: 'right', transition: {
+            duration: 1,
+            ease: 'easeIn'
+          }
+        }} exit={{
+          scaleX: 0,
+          transformOrigin: 'left',
+          transition: {
+            duration: 1,
+            ease: 'easeIn'
+          }
+        }} />
+        <motion.nav className="nav nav--desktop">
           <ul className="nav__list">
-            <li className="nav__item">
+            <li className={`nav__item ${pathName === '/' ? 'nav__item--active' : ''}`}>
               <Link to="/" className="nav-link">
                 <span className="nav-link__index">00</span>
                 <span className="nav-link__title">HOME</span>
               </Link>
             </li>
-            <li className="nav__item">
+            <li className={`nav__item ${pathName === '/destination' ? 'nav__item--active' : ''}`}>
               <Link to="/destination" className="nav-link">
                 <span className="nav-link__index">01</span>
                 <span className="nav-link__title">DESTINATION</span>
               </Link>
             </li>
-            <li className="nav__item">
+            <li className={`nav__item ${pathName === '/crew' ? 'nav__item--active' : ''}`}>
               <Link to="/crew" className="nav-link">
                 <span className="nav-link__index">02</span>
                 <span className="nav-link__title">CREW</span>
               </Link>
             </li>
-            <li className="nav__item">
+            <li className={`nav__item ${pathName === '/technology' ? 'nav__item--active' : ''}`}>
               <Link to="/technology" className="nav-link">
                 <span className="nav-link__index">03</span>
                 <span className="nav-link__title">TECHNOLOGY</span>
@@ -107,7 +122,7 @@ const Header = ({ siteTitle }) => {
             </li>
 
           </ul>
-        </nav>
+        </motion.nav>
         <div className="hamburger-menu" onClick={() => handleToggleSidebar()}>
           <span></span>
           <span></span>

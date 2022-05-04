@@ -5,9 +5,11 @@ import moonImg from "../../images/moon.png"
 import marsImg from "../../images/mars.png"
 import europaImg from "../../images/europa.png"
 import titanImg from "../../images/titan.png"
+import { motion } from "framer-motion"
 
 const planets = [
   {
+    key: 1,
     name: "Moon",
     description:
       "See our planet as you’ve never seen it before. A perfect relaxing trip away to help regain perspective and come back refreshed. While you’re there, take in some history by visiting the Luna 2 and Apollo 11 landing sites.",
@@ -16,6 +18,7 @@ const planets = [
     imgSrc: moonImg,
   },
   {
+    key: 2,
     name: "Mars",
     description:
       "Don’t forget to pack your hiking boots. You’ll need them to tackle Olympus Mons, the tallest planetary mountain in our solar system. It’s two and a half times the size of Everest!",
@@ -24,6 +27,7 @@ const planets = [
     imgSrc: marsImg,
   },
   {
+    key: 3,
     name: "EUROPA",
     description:
       "The smallest of the four Galilean moons orbiting Jupiter, Europa is a winter lover’s dream. With an icy surface, it’s perfect for a bit of ice skating, curling, hockey, or simple relaxation in your snug wintery cabin.",
@@ -32,6 +36,7 @@ const planets = [
     imgSrc: europaImg,
   },
   {
+    key: 4,
     name: "TITAN",
     description:
       "The only moon known to have a dense atmosphere other than Earth, Titan is a home away from home (just a few hundred degrees colder!). As a bonus, you get striking views of the Rings of Saturn.",
@@ -41,11 +46,33 @@ const planets = [
   },
 ]
 const DestinationPage = () => {
-  const [planetSelected, setPlanetSelected] = useState(planets[0])
+  const [planetSelected, setPlanetSelected] = useState(planets[0].key)
 
+  const getPlanetByKey = key => {
+    return planets.filter(p => p.key === key)[0]
+  }
   return (
     <Layout>
-      <div className="page destination-page">
+      <motion.div
+        initial={{
+          opacity: 0,
+          // x: "100vw",
+          transition: {
+            ease: "easeInOut",
+            duration: 1,
+          },
+        }}
+        animate={{
+          opacity: 1,
+          x: 0,
+          transition: {
+            ease: "easeInOut",
+            delay: -1,
+          },
+        }}
+        exit={{ opacity: 0 }}
+        className="page destination-page"
+      >
         <div className="container">
           <h5 className="page__title">
             <span>01</span>
@@ -57,20 +84,22 @@ const DestinationPage = () => {
               <img
                 width={"100%"}
                 height={"100%"}
-                src={planetSelected.imgSrc}
-                alt={planetSelected.name}
+                src={getPlanetByKey(planetSelected).imgSrc}
+                alt={getPlanetByKey(planetSelected).name}
               />
             </div>
             <div className="planet__info">
               <div className="tabs">
-                {planets.map(planet => (
+                {planets.map((planet, i) => (
                   <div
-                    key={planet.name}
+                    key={i}
+                    id={i}
                     className={`tab ${
-                      planetSelected.name == planet.name && "tab--active"
+                      getPlanetByKey(planetSelected).name == planet.name &&
+                      "tab--active"
                     }`}
                     onClick={() => {
-                      setPlanetSelected(planet)
+                      setPlanetSelected(planet.key)
                     }}
                   >
                     {planet.name}
@@ -78,22 +107,24 @@ const DestinationPage = () => {
                 ))}
               </div>
               <div className="tab_content">
-                <h2 className="planet__name">{planetSelected.name}</h2>
+                <h2 className="planet__name">
+                  {getPlanetByKey(planetSelected).name}
+                </h2>
                 <p className="body planet__description">
-                  {planetSelected.description}
+                  {getPlanetByKey(planetSelected).description}
                 </p>
                 <div className="divider" />
                 <div className="planet__detail-infos">
                   <div className="planet__detail-info">
                     <div className="subheading2">AVG. DISTANCE</div>
                     <span className="subheading1">
-                      {planetSelected.distanceAvg}
+                      {getPlanetByKey(planetSelected).distanceAvg}
                     </span>
                   </div>
                   <div className="planet__detail-info">
                     <div className="subheading2">Est. travel time</div>
                     <span className="subheading1">
-                      {planetSelected.estimateTravelTime}
+                      {getPlanetByKey(planetSelected).estimateTravelTime}
                     </span>
                   </div>
                 </div>
@@ -101,7 +132,7 @@ const DestinationPage = () => {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </Layout>
   )
 }

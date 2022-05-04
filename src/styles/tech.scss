@@ -10,6 +10,9 @@
   transition: all 0.3s ease-in;
   display: flex;
   flex-direction: column;
+  @include lg {
+    padding-right: 0;
+  }
   .container {
     flex: 1;
     display: flex;
@@ -24,7 +27,7 @@
 
     .technology {
       margin-top: 32px;
-    
+
       // flex: 1;
       width: 100%;
       display: flex;
@@ -32,58 +35,18 @@
       align-items: center;
       justify-content: center;
 
-    
       position: relative;
 
       @include sm {
         margin-top: 56px;
       }
-      @include lg{
+      @include lg {
         margin-top: 24px;
         flex-direction: row-reverse;
+        justify-content: space-between;
+        // align-items: center;
       }
 
-      &__slides-indicators {
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        justify-content: center;
-        gap: 16px;
-        margin-top: 32px;
-        margin-bottom: 24px;
-        @include sm{
-          margin-top: 56px;
-          margin-bottom: 44px;
-        }
-        span {
-          height: 40px;
-          width: 40px;
-          border-radius: 50%;
-          border: 1px solid rgba($color: #fff, $alpha: 0.25);
-          display: inline-flex;
-          justify-content: center;
-          align-items: center;
-          color: $white;
-          font-family: "Bellefair";
-          background-color: transparent;
-          font-size: 16px;
-
-          &.active {
-            border: 1px solid rgba($color: #fff, $alpha: 1);
-            background-color: $white;
-            color: $black;
-          }
-
-          @include sm {
-            height: 60px;
-            width: 60px;
-          }
-          @include lg {
-            height: 80px;
-            width: 80px;
-          }
-        }
-      }
       &__img {
         width: calc(100vw);
         height: calc((100vw) / 2.2);
@@ -100,12 +63,84 @@
           //   transform: translateX(-48px);
           height: calc((100vw) / 2.47);
         }
+        @include lg {
+          width: 515px;
+          height: 527px;
+        }
+      }
+
+      &__content-wrapper {
+        display: flex;
+        flex-direction: column;
+
+        @include lg {
+          flex-direction: row;
+          gap: 80px;
+          padding-top: 24px;
+        }
+        @include xl {
+          padding-left: 136px;
+        }
+      }
+      &__slides-indicators {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: center;
+        color: $white;
+        font-family: "Bellefair";
+        font-size: 16px;
+        gap: 16px;
+        margin-top: 32px;
+        margin-bottom: 24px;
+        @include sm {
+          margin-top: 56px;
+          margin-bottom: 44px;
+          font-size: 24px;
+        }
+        @include lg {
+          flex-direction: column;
+          gap: 32px;
+          margin: 0;
+          justify-content: start;
+          width: auto;
+          font-size: 32px;
+        }
+        span {
+          height: 40px;
+          width: 40px;
+          border-radius: 50%;
+          border: 1px solid rgba($color: #fff, $alpha: 0.25);
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+          background-color: transparent;
+          transition: all 0.2s ease-in;
+          &:hover {
+            border: 1px solid rgba($color: #fff, $alpha: 1);
+          }
+          &.active {
+            border: 1px solid rgba($color: #fff, $alpha: 1);
+            background-color: $white;
+            color: $black;
+          }
+
+          @include sm {
+            height: 60px;
+            width: 60px;
+          }
+          @include lg {
+            height: 80px;
+            width: 80px;
+          }
+        }
       }
       &__content {
-        max-width: 458px;
+        max-width: 508px;
         text-align: center;
 
-        @include lg{
+        @include lg {
           text-align: left;
         }
       }
