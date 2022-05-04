@@ -7,6 +7,27 @@ import logo from '../../images/logo.svg';
 import { motion, useCycle } from "framer-motion";
 
 const isBrowser = typeof window !== "undefined"
+const routes = [
+  {
+    path: '/',
+    index: '00',
+    title: 'HOME'
+  },
+  {
+    path: '/destination',
+    index: '01',
+    title: 'DESTINATION'
+  },
+  {
+    path: '/crew',
+    index: '02',
+    title: 'CREW'
+  }, {
+    path: '/technology',
+    index: '03',
+    title: 'TECHNOLOGY'
+  }
+]
 const Header = ({ siteTitle }) => {
 
   const sidebarVariants = {
@@ -60,6 +81,7 @@ const Header = ({ siteTitle }) => {
     toggleSidebarAnimation();
   }
 
+
   useEffect(() => {
 
     if (isBrowser)
@@ -74,7 +96,32 @@ const Header = ({ siteTitle }) => {
   },
     []);
 
+  const renderNavLinks = (isDesktop) => {
+    if (isDesktop) {
+      return (
+        <>
+          {routes.map(route => (
+            <li key={route.path} className={`nav__item ${pathName === route.path ? 'nav__item--active' : ''}`}>
+              <Link to={route.path} className="nav-link">
+                <span className="nav-link__index">{route.index}</span>
+                <span className="nav-link__title">{route.title}</span>
+              </Link>
+            </li>
+          ))
+          }</>
+      )
+    }
+    return (
+      routes.map(route => (<motion.li key={route.path} className={`nav__item ${pathName === route.path ? 'nav__item--active' : ''}`}
+        variants={navSidebarItemVariants}
+        exit={'hidden'}>
+        <Link to={route.path} className="nav-link">
+          <span className="nav-link__index">{route.index}</span>
+          <span className="nav-link__title">{route.title}</span>
+        </Link>
+      </motion.li>)))
 
+  }
 
 
   return (
@@ -98,30 +145,9 @@ const Header = ({ siteTitle }) => {
         }} />
         <motion.nav className="nav nav--desktop">
           <ul className="nav__list">
-            <li className={`nav__item ${pathName === '/' ? 'nav__item--active' : ''}`}>
-              <Link to="/" className="nav-link">
-                <span className="nav-link__index">00</span>
-                <span className="nav-link__title">HOME</span>
-              </Link>
-            </li>
-            <li className={`nav__item ${pathName === '/destination' ? 'nav__item--active' : ''}`}>
-              <Link to="/destination" className="nav-link">
-                <span className="nav-link__index">01</span>
-                <span className="nav-link__title">DESTINATION</span>
-              </Link>
-            </li>
-            <li className={`nav__item ${pathName === '/crew' ? 'nav__item--active' : ''}`}>
-              <Link to="/crew" className="nav-link">
-                <span className="nav-link__index">02</span>
-                <span className="nav-link__title">CREW</span>
-              </Link>
-            </li>
-            <li className={`nav__item ${pathName === '/technology' ? 'nav__item--active' : ''}`}>
-              <Link to="/technology" className="nav-link">
-                <span className="nav-link__index">03</span>
-                <span className="nav-link__title">TECHNOLOGY</span>
-              </Link>
-            </li>
+            {
+              renderNavLinks(true)
+            }
 
           </ul>
         </motion.nav>
@@ -131,7 +157,7 @@ const Header = ({ siteTitle }) => {
           <span></span>
         </div>
       </header>
-      <motion.nav variants={sidebarVariants} initial="hidden" animate={sidebarAnimation} style={{
+      <motion.nav variants={sidebarVariants} initial="hidden" exit={'hidden'} animate={sidebarAnimation} style={{
 
       }} className="nav nav--sidebar">
         <div className="actions-wrapper">
@@ -141,30 +167,7 @@ const Header = ({ siteTitle }) => {
           </div>
         </div>
         <ul className="nav__list nav__list--sidebar">
-          <motion.li className="nav__item" variants={navSidebarItemVariants}>
-            <Link to="/" className="nav-link">
-              <span className="nav-link__index">00</span>
-              <span className="nav-link__title">HOME</span>
-            </Link>
-          </motion.li>
-          <motion.li className="nav__item" variants={navSidebarItemVariants}>
-            <Link to="/destination" className="nav-link" >
-              <span className="nav-link__index">01</span>
-              <span className="nav-link__title">DESTINATION</span>
-            </Link>
-          </motion.li>
-          <motion.li className="nav__item" variants={navSidebarItemVariants}>
-            <Link to="/" className="nav-link">
-              <span className="nav-link__index">02</span>
-              <span className="nav-link__title">CREW</span>
-            </Link>
-          </motion.li>
-          <motion.li className="nav__item" variants={navSidebarItemVariants}>
-            <Link to="/" className="nav-link">
-              <span className="nav-link__index">03</span>
-              <span className="nav-link__title">TECHNOLOGY</span>
-            </Link>
-          </motion.li>
+          {renderNavLinks(false)}
         </ul>
       </motion.nav>
     </>
