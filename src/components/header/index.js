@@ -6,7 +6,7 @@ import { Link } from "gatsby";
 import logo from '../../images/logo.svg';
 import { motion, useCycle } from "framer-motion";
 
-
+const isBrowser = typeof window !== "undefined"
 const Header = ({ siteTitle }) => {
 
   const sidebarVariants = {
@@ -53,7 +53,7 @@ const Header = ({ siteTitle }) => {
   }
   const [openSidebar, setOpenSidebar] = useState(false);
   const [sidebarAnimation, toggleSidebarAnimation] = useCycle('hidden', 'visible');
-  const pathName = window.location.pathname;
+  const pathName = isBrowser ? window.location.pathname : '/';
 
   const handleToggleSidebar = () => {
     setOpenSidebar(!openSidebar);
@@ -61,14 +61,16 @@ const Header = ({ siteTitle }) => {
   }
 
   useEffect(() => {
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 768 && openSidebar === true) {
-        setOpenSidebar(!openSidebar);
-        toggleSidebarAnimation(0);
-      }
-    });
 
-    console.log(window.location.pathname);
+    if (isBrowser)
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 768 && openSidebar === true) {
+          setOpenSidebar(!openSidebar);
+          toggleSidebarAnimation(0);
+        }
+      });
+
+
   },
     []);
 

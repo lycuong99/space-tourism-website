@@ -32,16 +32,19 @@ const techs = [
     imgSrc: [tech03, tech3_down_lg],
   },
 ]
+const isBrowser = typeof window !== "undefined"
 const TechnologyPage = () => {
   const [matchUpLG, setMatchUpLG] = useState(
-    window.matchMedia("(min-width: 1024px)").matches
+    isBrowser ? window.matchMedia("(min-width: 1024px)").matches : true
   )
   const [techSelected, setTechSelected] = useState(techs[0])
 
   useEffect(() => {
-    window.matchMedia("(min-width: 1024px)").addEventListener("change", e => {
-      setMatchUpLG(e.matches)
-    })
+    if (isBrowser) {
+      window.matchMedia("(min-width: 1024px)").addEventListener("change", e => {
+        setMatchUpLG(e.matches)
+      })
+    }
   }, [])
   return (
     <Layout>
