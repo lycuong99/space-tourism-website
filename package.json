@@ -8,6 +8,7 @@
     "@fontsource/barlow": "^4.5.7",
     "@fontsource/barlow-condensed": "^4.5.7",
     "@fontsource/bellefair": "^4.5.8",
+    "esm": "^3.2.25",
     "framer-motion": "^6.3.2",
     "gatsby": "^4.12.1",
     "gatsby-plugin-gatsby-cloud": "^4.12.1",

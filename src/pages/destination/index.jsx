@@ -56,9 +56,10 @@ const DestinationPage = () => {
       <motion.div
         initial={{
           opacity: 0,
-          x: "100vw",
+          // x: "100vw",
           transition: {
             ease: "easeInOut",
+            transformStyle: "flat",
             duration: 1,
           },
         }}
@@ -77,6 +78,7 @@ const DestinationPage = () => {
           className="container"
           initial={{
             opacity: 0,
+            transformStyle: "flat",
             x: "100vw",
             transition: {
               ease: "easeInOut",
