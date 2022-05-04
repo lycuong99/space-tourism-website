@@ -62,7 +62,7 @@ const Header = ({ siteTitle }) => {
 
   useEffect(() => {
     window.addEventListener('resize', () => {
-      if (window.innerWidth > 768 && openSidebar == true) {
+      if (window.innerWidth > 768 && openSidebar === true) {
         setOpenSidebar(!openSidebar);
         toggleSidebarAnimation(0);
       }

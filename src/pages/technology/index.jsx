@@ -74,7 +74,7 @@ const TechnologyPage = () => {
                       setTechSelected(tech)
                     }}
                     className={`${
-                      techSelected.name == tech.name ? "active" : ""
+                      techSelected.name === tech.name ? "active" : ""
                     }`}
                   >
                     {index}

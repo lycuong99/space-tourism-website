@@ -45,17 +45,17 @@ const CrewPage = () => {
   const [selectedCrew, setSelectedCrew] = useState(crews[0])
   const [selectedIndex, setSelectedIndex] = useState(0)
 
-  const autoSlide = useCallback(() => {
-    let nextIndex = selectedIndex + 1
-    if (selectedIndex == crews.length - 1) {
-      nextIndex = 0
-    }
-    console.log(selectedIndex)
-    // console.log(nextIndex)
+  // const autoSlide = useCallback(() => {
+  //   let nextIndex = selectedIndex + 1
+  //   if (selectedIndex == crews.length - 1) {
+  //     nextIndex = 0
+  //   }
+  //   console.log(selectedIndex)
+  //   // console.log(nextIndex)
 
-    setSelectedCrew(crews[nextIndex])
-    setSelectedIndex(nextIndex)
-  }, [selectedIndex])
+  //   setSelectedCrew(crews[nextIndex])
+  //   setSelectedIndex(nextIndex)
+  // }, [selectedIndex])
 
   // useEffect(() => {
   //   setTimeout(autoSlide, 5000);

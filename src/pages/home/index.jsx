@@ -104,7 +104,7 @@ const HomePage = () => {
       animate={{ opacity: 1 }}
       exit={{
         opacity: 0,
-        // x: "-100vw",
+        x: "-100vw",
         transition: {
           duration: 1,
           transition: {

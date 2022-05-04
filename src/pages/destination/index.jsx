@@ -56,7 +56,7 @@ const DestinationPage = () => {
       <motion.div
         initial={{
           opacity: 0,
-          // x: "100vw",
+          x: "100vw",
           transition: {
             ease: "easeInOut",
             duration: 1,
@@ -73,7 +73,26 @@ const DestinationPage = () => {
         exit={{ opacity: 0 }}
         className="page destination-page"
       >
-        <div className="container">
+        <motion.div
+          className="container"
+          initial={{
+            opacity: 0,
+            x: "100vw",
+            transition: {
+              ease: "easeInOut",
+              duration: 1,
+            },
+          }}
+          animate={{
+            opacity: 1,
+            x: 0,
+            transition: {
+              ease: "easeInOut",
+              delay: -1,
+            },
+          }}
+          exit={{ opacity: 0 }}
+        >
           <h5 className="page__title">
             <span>01</span>
             <span>Pick your destination</span>
@@ -95,7 +114,7 @@ const DestinationPage = () => {
                     key={i}
                     id={i}
                     className={`tab ${
-                      getPlanetByKey(planetSelected).name == planet.name &&
+                      getPlanetByKey(planetSelected).name === planet.name &&
                       "tab--active"
                     }`}
                     onClick={() => {
@@ -131,7 +150,7 @@ const DestinationPage = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </motion.div>
     </Layout>
   )
