@@ -38,12 +38,21 @@ const TechnologyPage = () => {
     isBrowser ? window.matchMedia("(min-width: 1024px)").matches : true
   )
   const [techSelected, setTechSelected] = useState(techs[0])
-
+  const handleChangeScreenSize = e => {
+    setMatchUpLG(e.matches)
+  }
   useEffect(() => {
     if (isBrowser) {
-      window.matchMedia("(min-width: 1024px)").addEventListener("change", e => {
-        setMatchUpLG(e.matches)
-      })
+      window
+        .matchMedia("(min-width: 1024px)")
+        .addEventListener("change", handleChangeScreenSize)
+    }
+    return () => {
+      if (isBrowser) {
+        window
+          .matchMedia("(min-width: 1024px)")
+          .removeEventListener("change", handleChangeScreenSize)
+      }
     }
   }, [])
   return (
@@ -54,7 +63,35 @@ const TechnologyPage = () => {
         exit={{ opacity: 0 }}
         className="page tech-page"
       >
-        <div className="container">
+        <motion.div
+          className="container"
+          initial={{
+            opacity: 0,
+            transformStyle: "flat",
+            x: "100vw",
+            transition: {
+              ease: "easeInOut",
+              duration: 1,
+            },
+          }}
+          animate={{
+            opacity: 1,
+            x: 0,
+            transition: {
+              ease: "easeInOut",
+              duration: 1,
+              delay: -1,
+            },
+          }}
+          exit={{
+            opacity: 0,
+            x: "-100vw",
+            transition: {
+              ease: "easeInOut",
+              duration: 1,
+            },
+          }}
+        >
           <h5 className="page__title">
             <span>03</span>
             <span>SPACE LAUNCH 101</span>
@@ -94,7 +131,7 @@ const TechnologyPage = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </motion.div>
     </Layout>
   )

@@ -112,14 +112,18 @@ const Header = ({ siteTitle }) => {
       )
     }
     return (
-      routes.map(route => (<motion.li key={route.path} className={`nav__item ${pathName === route.path ? 'nav__item--active' : ''}`}
-        variants={navSidebarItemVariants}
-        exit={'hidden'}>
-        <Link to={route.path} className="nav-link">
-          <span className="nav-link__index">{route.index}</span>
-          <span className="nav-link__title">{route.title}</span>
-        </Link>
-      </motion.li>)))
+      <>
+        {
+          routes.map(route => (<motion.li key={route.path} className={`nav__item ${pathName === route.path ? 'nav__item--active' : ''}`}
+
+            variants={navSidebarItemVariants}
+            exit={'hidden'}>
+            <Link to={route.path} className="nav-link">
+              <span className="nav-link__index">{route.index}</span>
+              <span className="nav-link__title">{route.title}</span>
+            </Link>
+          </motion.li>))}</>
+    )
 
   }
 
@@ -145,8 +149,14 @@ const Header = ({ siteTitle }) => {
         }} />
         <motion.nav className="nav nav--desktop">
           <ul className="nav__list">
-            {
-              renderNavLinks(true)
+            {routes.map(route => (
+              <li key={route.path} className={`nav__item ${pathName === route.path ? 'nav__item--active' : ''}`}>
+                <Link to={route.path} className="nav-link">
+                  <span className="nav-link__index">{route.index}</span>
+                  <span className="nav-link__title">{route.title}</span>
+                </Link>
+              </li>
+            ))
             }
 
           </ul>
@@ -157,7 +167,7 @@ const Header = ({ siteTitle }) => {
           <span></span>
         </div>
       </header>
-      <motion.nav variants={sidebarVariants} initial="hidden" exit={'hidden'} animate={sidebarAnimation} style={{
+      <motion.nav variants={sidebarVariants} initial="hidden" animate={sidebarAnimation} exit={'hidden'} style={{
 
       }} className="nav nav--sidebar">
         <div className="actions-wrapper">
@@ -167,7 +177,31 @@ const Header = ({ siteTitle }) => {
           </div>
         </div>
         <ul className="nav__list nav__list--sidebar">
-          {renderNavLinks(false)}
+          <motion.li className={`nav__item ${pathName === "/" ? 'nav__item--active' : ''}`} variants={navSidebarItemVariants}>
+            <Link to="/" className="nav-link">
+              <span className="nav-link__index">00</span>
+              <span className="nav-link__title">HOME</span>
+            </Link>
+          </motion.li>
+          <motion.li className={`nav__item ${pathName === "/destination" ? 'nav__item--active' : ''}`} variants={navSidebarItemVariants}>
+            <Link to="/destination" className="nav-link" >
+              <span className="nav-link__index">01</span>
+              <span className="nav-link__title">DESTINATION</span>
+            </Link>
+          </motion.li>
+          <motion.li className={`nav__item ${pathName === '/crew' ? 'nav__item--active' : ''}`} variants={navSidebarItemVariants}>
+            <Link to="/crew" className="nav-link">
+              <span className="nav-link__index">02</span>
+              <span className="nav-link__title">CREW</span>
+            </Link>
+          </motion.li>
+          <motion.li className={`nav__item ${pathName === '/technology' ? 'nav__item--active' : ''}`} variants={navSidebarItemVariants}>
+            <Link to="/technology" className="nav-link">
+              <span className="nav-link__index">03</span>
+              <span className="nav-link__title">TECHNOLOGY</span>
+            </Link>
+          </motion.li>
+
         </ul>
       </motion.nav>
     </>

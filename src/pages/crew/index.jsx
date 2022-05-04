@@ -78,7 +78,35 @@ const CrewPage = () => {
           exit={{ opacity: 0 }}
           className="page crew-page"
         >
-          <div className="container">
+          <motion.div
+            className="container"
+            initial={{
+              opacity: 0,
+              transformStyle: "flat",
+              x: "100vw",
+              transition: {
+                ease: "easeInOut",
+                duration: 1,
+              },
+            }}
+            animate={{
+              opacity: 1,
+              x: 0,
+              transition: {
+                ease: "easeInOut",
+                duration: 1,
+                delay: -1,
+              },
+            }}
+            exit={{
+              opacity: 0,
+              x: "-100vw",
+              transition: {
+                ease: "easeInOut",
+                duration: 1,
+              },
+            }}
+          >
             <h5 className="page__title">
               <span>02</span>
               <span>Meet your crew</span>
@@ -115,7 +143,7 @@ const CrewPage = () => {
                 <img src={selectedCrew.imgSrc} alt={selectedCrew.name} />
               </div>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
       </Layout>
     </>

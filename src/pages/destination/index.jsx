@@ -56,7 +56,6 @@ const DestinationPage = () => {
       <motion.div
         initial={{
           opacity: 0,
-          // x: "100vw",
           transition: {
             ease: "easeInOut",
             transformStyle: "flat",
@@ -65,11 +64,6 @@ const DestinationPage = () => {
         }}
         animate={{
           opacity: 1,
-          x: 0,
-          transition: {
-            ease: "easeInOut",
-            delay: -1,
-          },
         }}
         exit={{ opacity: 0 }}
         className="page destination-page"
@@ -80,20 +74,24 @@ const DestinationPage = () => {
             opacity: 0,
             transformStyle: "flat",
             x: "100vw",
-            transition: {
-              ease: "easeInOut",
-              duration: 1,
-            },
           }}
           animate={{
             opacity: 1,
             x: 0,
             transition: {
               ease: "easeInOut",
+              duration: 1,
               delay: -1,
             },
           }}
-          exit={{ opacity: 0 }}
+          exit={{
+            opacity: 0,
+            x: "-100vw",
+            transition: {
+              ease: "easeInOut",
+              duration: 1,
+            },
+          }}
         >
           <h5 className="page__title">
             <span>01</span>
@@ -114,7 +112,6 @@ const DestinationPage = () => {
                 {planets.map((planet, i) => (
                   <div
                     key={i}
-                    id={i}
                     className={`tab ${
                       getPlanetByKey(planetSelected).name === planet.name &&
                       "tab--active"
