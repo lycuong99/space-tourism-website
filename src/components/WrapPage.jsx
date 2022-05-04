@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { motion } from "framer-motion"
+import "../styles/loader.scss"
 
 export const WrapPage = ({ children }) => {
   useEffect(() => {
@@ -19,7 +20,7 @@ export const WrapPage = ({ children }) => {
           initial={{
             opacity: 1,
             transition: {
-              duration: 3,
+              duration: 10,
             },
           }}
           onAnimationComplete={() => {
@@ -28,28 +29,14 @@ export const WrapPage = ({ children }) => {
           animate={{
             opacity: 1,
             transition: {
-              duration: 2,
+              duration: 4,
             },
           }}
           exit={{ opacity: 0 }}
         >
-          <motion.div
-            style={{
-              border: "16px solid #f3f3f3",
-              borderTop: "16px solid #3498db",
-              borderRadius: "50%",
-              height: 200,
-              width: 200,
-            }}
-            animate={{
-              rotate: ["0deg", "360deg"],
-
-              transition: {
-                repeat: Infinity,
-                yoyo: Infinity,
-              },
-            }}
-          ></motion.div>
+          <div className="loader">
+            <div className="circle"></div>
+          </div>
         </motion.div>
       )}
       {!isLoading && children}
