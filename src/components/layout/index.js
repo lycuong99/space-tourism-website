@@ -15,11 +15,11 @@ import "@fontsource/barlow";
 
 import { AnimatePresence, motion } from "framer-motion";
 
-const Layout = ({ children }) => {
+const Layout = ({ children, location }) => {
 
 
   useEffect(() => {
-    console.log("Load lan dau");
+    console.log("Load lan dau", location);
 
   }, []);
 

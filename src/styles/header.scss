@@ -288,6 +288,8 @@
           height: 2px;
           width: 24px;
           background-color: $blue;
+          will-change: transform;
+          
           &:nth-child(1) {
             left: 0;
             transform-origin: center;

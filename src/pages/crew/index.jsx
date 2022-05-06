@@ -6,12 +6,12 @@ import crew1 from "../../images/crew1.png"
 import crew2 from "../../images/crew2.png"
 import crew3 from "../../images/crew3.png"
 import crew4 from "../../images/crew4.png"
-import { useEffect } from "react"
-import { useCallback } from "react"
-import { motion } from "framer-motion"
+
+import { motion, useCycle } from "framer-motion"
 
 const crews = [
   {
+    index: 0,
     name: "Douglas Hurley",
     role: "Commander",
     desciption:
@@ -19,6 +19,7 @@ const crews = [
     imgSrc: crew1,
   },
   {
+    index: 1,
     name: "MARK SHUTTLEWORTH",
     role: "Mission Specialist",
     desciption:
@@ -26,6 +27,7 @@ const crews = [
     imgSrc: crew2,
   },
   {
+    index: 2,
     name: "Victor Glover",
     role: "PILOT",
     desciption:
@@ -33,6 +35,7 @@ const crews = [
     imgSrc: crew3,
   },
   {
+    index: 3,
     name: "Anousheh Ansari",
     role: "Flight Engineer",
     desciption:
@@ -41,33 +44,49 @@ const crews = [
   },
 ]
 
+const slideVariants = {
+  show: {
+    x: "0",
+    opacity: "1",
+    transition: {
+      duration: 0.5,
+      ease: "easeInOut",
+    },
+  },
+  hidden: {
+    x: "20",
+    opacity: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeInOut",
+    },
+  },
+  pre_show: {
+    x: "-20",
+    opacity: 0,
+    transition: {
+      duration: 0,
+    },
+  },
+}
+
 const CrewPage = () => {
   const [selectedCrew, setSelectedCrew] = useState(crews[0])
-  const [selectedIndex, setSelectedIndex] = useState(0)
+  const [selectedPrevCrew, setSelectedPrevCrew] = useState(null)
 
-  // const autoSlide = useCallback(() => {
-  //   let nextIndex = selectedIndex + 1
-  //   if (selectedIndex == crews.length - 1) {
-  //     nextIndex = 0
-  //   }
-  //   console.log(selectedIndex)
-  //   // console.log(nextIndex)
-
-  //   setSelectedCrew(crews[nextIndex])
-  //   setSelectedIndex(nextIndex)
-  // }, [selectedIndex])
-
-  // useEffect(() => {
-  //   setTimeout(autoSlide, 5000);
-  // }, [selectedIndex])
-
-  useEffect(() => {
-    // let interval = setInterval(autoSlide, 1000)
-
-    return () => {
-      // clearInterval(interval)
+  const handleChangeSelectCrew = crew => {
+    setSelectedPrevCrew(selectedCrew)
+    setTimeout(() => {
+      setSelectedCrew(crew)
+    }, 100)
+  }
+  const isPrev = () => {
+    if (selectedPrevCrew) {
+      return selectedPrevCrew.index < selectedCrew.index
     }
-  }, [])
+    return false
+  }
+  const [slideAnimation, setSlideAnimation] = useCycle("hide", "show")
 
   return (
     <>
@@ -114,13 +133,32 @@ const CrewPage = () => {
 
             <div className="crew-page__content crew">
               <div className="crew__info">
-                <div>
+                <motion.div
+                  key={selectedCrew ? selectedCrew.name : "empty"}
+                  variants={slideVariants}
+                  animate={{
+                    opacity: 1,
+                    x: 0,
+                  }}
+                  initial={{
+                    opacity: 0,
+                    x: isPrev() ? 20 : -20,
+                  }}
+                  exit={{
+                    opacity: 0,
+                    x: isPrev() ? -20 : 20,
+                  }}
+                  transition={{ duration: 0.5 }}
+                  onAnimationComplete={() => {
+                    // setSelectedCrew(selectedPrevCrew)
+                  }}
+                >
                   <h4 className="crew__role">{selectedCrew.role}</h4>
                   <h3 className="crew__name">{selectedCrew.name}</h3>
                   <p className="body crew__description">
                     {selectedCrew.desciption}
                   </p>
-                </div>
+                </motion.div>
 
                 <div className="slide-indicators">
                   {crews.map((crew, i) => (
@@ -128,8 +166,7 @@ const CrewPage = () => {
                       id={crew.name}
                       key={i}
                       onClick={() => {
-                        setSelectedCrew(crew)
-                        setSelectedIndex(i)
+                        handleChangeSelectCrew(crew)
                       }}
                       className={`${
                         crew.name === selectedCrew.name ? "active" : ""
@@ -139,9 +176,17 @@ const CrewPage = () => {
                 </div>
               </div>
 
-              <div className="crew__img">
+              <motion.div
+                key={selectedCrew ? "crew__img" + selectedCrew.name : "empty"}
+                // variants={slideVariants}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                exit={{ opacity: 1, x: -20 }}
+                className="crew__img"
+              >
                 <img src={selectedCrew.imgSrc} alt={selectedCrew.name} />
-              </div>
+              </motion.div>
             </div>
           </motion.div>
         </motion.div>

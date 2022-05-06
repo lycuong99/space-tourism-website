@@ -57,10 +57,7 @@
         background-clip: padding-box;
         transition: all 0.3s ease-in;
 
-        // transform: translateX(-24px);
-
         @include md {
-          //   transform: translateX(-48px);
           height: calc((100vw) / 2.47);
         }
         @include lg {

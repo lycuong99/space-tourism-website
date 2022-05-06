@@ -20,7 +20,7 @@ export const WrapPage = ({ children }) => {
           initial={{
             opacity: 1,
             transition: {
-              duration: 10,
+              duration: 2,
             },
           }}
           onAnimationComplete={() => {
@@ -29,7 +29,7 @@ export const WrapPage = ({ children }) => {
           animate={{
             opacity: 1,
             transition: {
-              duration: 4,
+              duration: 2,
             },
           }}
           exit={{ opacity: 0 }}

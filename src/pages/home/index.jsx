@@ -2,6 +2,7 @@ import { motion } from "framer-motion"
 import React, { useEffect } from "react"
 import "../../styles/home.scss"
 import gsap, { Power0, Power1, Power3, Power4, Back, Expo } from "gsap"
+import { Link } from "gatsby"
 import { CSSRulePlugin } from "gsap/CSSRulePlugin"
 const HomePage = () => {
   const textVariants = {
@@ -153,18 +154,20 @@ const HomePage = () => {
               </motion.span>
             </p>
           </motion.div>
-
-          <motion.button
-            className="landing-page-btn"
-            variants={buttonVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            EXPLORE
-            <div className="front-planet-wrapper">
-              <span className="front-planet"></span>
-            </div>
-          </motion.button>
+          <Link to="/destination">
+            <motion.button
+              onClick={() => {}}
+              className="landing-page-btn"
+              variants={buttonVariants}
+              initial="hidden"
+              animate="visible"
+            >
+              EXPLORE
+              <div className="front-planet-wrapper">
+                <span className="front-planet"></span>
+              </div>
+            </motion.button>
+          </Link>
         </div>
       </div>
     </motion.div>

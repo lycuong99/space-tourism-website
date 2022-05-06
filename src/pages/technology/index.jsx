@@ -122,13 +122,23 @@ const TechnologyPage = () => {
                   </span>
                 ))}
               </div>
-              <div className="technology__content">
+              <motion.div
+                key={
+                  techSelected
+                    ? "technology__content" + techSelected.name
+                    : "empty"
+                }
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+                className="technology__content"
+              >
                 <h5>THE TERMINOLOGY…</h5>
                 <h3 className="technology__name">{techSelected.name}</h3>
                 <p className="body technology__description">
                   {techSelected.description}
                 </p>
-              </div>
+              </motion.div>
             </div>
           </div>
         </motion.div>

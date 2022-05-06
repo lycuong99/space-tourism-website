@@ -46,7 +46,7 @@ const Header = ({ siteTitle }) => {
         ease: 'easeIn',
         stiffness: 10,
         when: 'beforeChildren',
-        staggerChildren: 0.4
+        staggerChildren: 0.2
       }
     }
   }

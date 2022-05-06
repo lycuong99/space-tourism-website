@@ -59,8 +59,13 @@
     @include lg {
       flex-direction: row;
       text-align: left;
-      justify-content: center;
+      justify-content: space-between;
       gap: 82px;
+      max-height: calc(100% - 32px);
+    }
+    @include xl {
+      padding-left: 136px;
+      padding-right: 136px;
     }
 
     &__img {
@@ -76,9 +81,12 @@
       }
       @include lg {
         height: 100%;
-        max-height: 100%;
-        max-width: 612px;
+        // max-width: 612px;
         align-items: flex-end;
+        align-self: flex-end;
+
+        max-height: 100%;
+        max-width: 100%;
       }
       img {
         max-height: 100%;
@@ -88,6 +96,7 @@
         @include sm {
           max-width: 458px;
           transform: translateY(0);
+          will-change: transform;
         }
         @include lg {
           max-width: 612px;
@@ -117,6 +126,7 @@
 
       @include lg {
         max-width: 444px;
+        min-height: calc(32px * 5);
       }
     }
     &__info {

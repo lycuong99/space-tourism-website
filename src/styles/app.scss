@@ -229,7 +229,9 @@ h5 {
     // filter: drop-shadow(0 0 2px $white) drop-shadow(0 0 5px $white)
     //   drop-shadow(0 0 10px $white) drop-shadow(0 0 20px $white);
     &::after {
+      -webkit-transform: scale(1);
       transform: scale(1);
+      will-change: transform;
     }
   }
 }

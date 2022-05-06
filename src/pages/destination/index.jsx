@@ -6,6 +6,7 @@ import marsImg from "../../images/mars.png"
 import europaImg from "../../images/europa.png"
 import titanImg from "../../images/titan.png"
 import { motion } from "framer-motion"
+import { StaticImage } from "gatsby-plugin-image"
 
 const planets = [
   {
@@ -98,15 +99,22 @@ const DestinationPage = () => {
             <span>Pick your destination</span>
           </h5>
 
-          <div className="destination-page__content planet">
-            <div className="planet__img">
+          <motion.div className="destination-page__content planet">
+            <motion.div
+              key={planetSelected ? "planet__img" + planetSelected : "empty"}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              exit={{ opacity: 1, x: -20 }}
+              className="planet__img"
+            >
               <img
                 width={"100%"}
                 height={"100%"}
                 src={getPlanetByKey(planetSelected).imgSrc}
                 alt={getPlanetByKey(planetSelected).name}
               />
-            </div>
+            </motion.div>
             <div className="planet__info">
               <div className="tabs">
                 {planets.map((planet, i) => (
@@ -124,7 +132,13 @@ const DestinationPage = () => {
                   </div>
                 ))}
               </div>
-              <div className="tab_content">
+              <motion.div
+                key={planetSelected ? "tab_content" + planetSelected : "empty"}
+                initial={{ opacity: 0, y: -30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="tab_content"
+              >
                 <h2 className="planet__name">
                   {getPlanetByKey(planetSelected).name}
                 </h2>
@@ -146,9 +160,9 @@ const DestinationPage = () => {
                     </span>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
       </motion.div>
     </Layout>
